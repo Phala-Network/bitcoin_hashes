@@ -346,6 +346,7 @@ impl HashEngine {
 
 #[cfg(test)]
 mod tests {
+    use std::vec::Vec;
     use crate::sha256;
     use crate::hex::{FromHex, ToHex};
     use crate::{Hash, HashEngine};

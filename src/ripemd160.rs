@@ -447,6 +447,7 @@ impl HashEngine {
 
 #[cfg(test)]
 mod tests {
+    use std::vec::Vec;
     use crate::ripemd160;
     use crate::hex::{FromHex, ToHex};
     use crate::Hash;

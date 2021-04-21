@@ -94,6 +94,7 @@ impl HashTrait for Hash {
 
 #[cfg(test)]
 mod tests {
+    use std::vec::Vec;
     use crate::hash160;
     use crate::hex::{FromHex, ToHex};
     use crate::Hash;

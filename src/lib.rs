@@ -33,8 +33,16 @@
 #![allow(bare_trait_objects)]
 #![allow(ellipsis_inclusive_range_patterns)]
 
-#![cfg_attr(all(not(test), not(feature = "std")), no_std)]
-#![cfg_attr(all(test, feature = "unstable"), feature(test))]
+#![cfg_attr(all(feature = "mesalock_sgx", not(target_env = "sgx")), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
+
+// #![cfg_attr(all(not(test), not(feature = "std")), no_std)]
+// #![cfg_attr(all(test, feature = "unstable"), feature(test))]
+
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+#[macro_use]
+extern crate sgx_tstd as std;
+
 #[cfg(all(test, feature = "unstable"))] extern crate test;
 
 #[cfg(any(test, feature="std"))] pub extern crate core;
@@ -228,6 +236,7 @@ macro_rules! hash_newtype {
 
 #[cfg(test)]
 mod test {
+    use std::string::ToString;
     use crate::Hash;
     hash_newtype!(TestNewtype, crate::sha256d::Hash, 32, doc="A test newtype");
     hash_newtype!(TestNewtype2, crate::sha256d::Hash, 32, doc="A test newtype");
@@ -243,4 +252,3 @@ mod test {
         assert_eq!(h2.as_hash(), h);
     }
 }
-

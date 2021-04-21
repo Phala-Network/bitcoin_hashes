@@ -16,6 +16,8 @@
 //!
 
 use core::{fmt, str};
+use std::string::String;
+use std::vec::Vec;
 use crate::Hash;
 
 /// Hex decoding error
@@ -365,4 +367,3 @@ mod tests {
         );
     }
 }
-

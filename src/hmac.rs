@@ -225,6 +225,7 @@ impl<'de, T: HashTrait + Deserialize<'de>> Deserialize<'de> for Hmac<T> {
 
 #[cfg(test)]
 mod tests {
+    use std::vec::Vec;
     use crate::sha256;
     #[cfg(feature="serde")] use sha512;
     use crate::{Hash, HashEngine, Hmac, HmacEngine};

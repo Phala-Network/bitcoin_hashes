@@ -88,6 +88,7 @@ impl HashTrait for Hash {
 
 #[cfg(test)]
 mod tests {
+    use std::vec::Vec;
     use crate::sha256d;
     use crate::hex::{FromHex, ToHex};
     use crate::Hash;

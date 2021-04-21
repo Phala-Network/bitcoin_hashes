@@ -107,7 +107,7 @@ impl HashTrait for Hash {
         let pad_length = zeroes.len() - (e.length % BLOCK_SIZE);
         e.input(&zeroes[..pad_length]);
         debug_assert_eq!(e.length % BLOCK_SIZE, zeroes.len());
-        
+
         e.input(&util::u64_to_array_be(8 * data_len));
         debug_assert_eq!(e.length % BLOCK_SIZE, 0);
 
@@ -185,6 +185,7 @@ impl HashEngine {
 
 #[cfg(test)]
 mod tests {
+    use std::vec::Vec;
     use crate::sha1;
     use crate::hex::{FromHex, ToHex};
     use crate::Hash;

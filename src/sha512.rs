@@ -336,6 +336,7 @@ impl HashEngine {
 
 #[cfg(test)]
 mod tests {
+    use std::vec::Vec;
     use crate::sha512;
     use crate::hex::{FromHex, ToHex};
     use crate::Hash;
