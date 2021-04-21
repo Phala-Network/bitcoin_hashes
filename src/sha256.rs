@@ -16,11 +16,11 @@
 
 use core::{cmp, str};
 
-use hex;
-use HashEngine as EngineTrait;
-use Hash as HashTrait;
-use Error;
-use util;
+use crate::hex;
+use crate::HashEngine as EngineTrait;
+use crate::Hash as HashTrait;
+use crate::Error;
+use crate::util;
 
 const BLOCK_SIZE: usize = 64;
 
@@ -79,9 +79,9 @@ pub struct Hash(
 );
 
 impl str::FromStr for Hash {
-    type Err = ::hex::Error;
+    type Err = crate::hex::Error;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        ::hex::FromHex::from_hex(s)
+        crate::hex::FromHex::from_hex(s)
     }
 }
 
@@ -158,9 +158,9 @@ serde_impl!(Midstate, 32);
 borrow_slice_impl!(Midstate);
 
 impl str::FromStr for Midstate {
-    type Err = ::hex::Error;
+    type Err = crate::hex::Error;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        ::hex::FromHex::from_hex(s)
+        crate::hex::FromHex::from_hex(s)
     }
 }
 
@@ -346,9 +346,9 @@ impl HashEngine {
 
 #[cfg(test)]
 mod tests {
-    use sha256;
-    use hex::{FromHex, ToHex};
-    use {Hash, HashEngine};
+    use crate::sha256;
+    use crate::hex::{FromHex, ToHex};
+    use crate::{Hash, HashEngine};
 
     #[derive(Clone)]
     struct Test {

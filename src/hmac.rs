@@ -23,9 +23,9 @@ use core::{borrow, fmt, ops, str};
 #[cfg(feature="serde")]
 use serde::{Serialize, Serializer, Deserialize, Deserializer};
 
-use HashEngine as EngineTrait;
-use Hash as HashTrait;
-use Error;
+use crate::HashEngine as EngineTrait;
+use crate::Hash as HashTrait;
+use crate::Error;
 
 /// A hash computed from a RFC 2104 HMAC. Parameterized by the underlying hash function.
 #[derive(Copy, Clone, PartialEq, Eq, Default, PartialOrd, Ord, Hash)]
@@ -225,9 +225,9 @@ impl<'de, T: HashTrait + Deserialize<'de>> Deserialize<'de> for Hmac<T> {
 
 #[cfg(test)]
 mod tests {
-    use sha256;
+    use crate::sha256;
     #[cfg(feature="serde")] use sha512;
-    use {Hash, HashEngine, Hmac, HmacEngine};
+    use crate::{Hash, HashEngine, Hmac, HmacEngine};
 
     #[derive(Clone)]
     struct Test {

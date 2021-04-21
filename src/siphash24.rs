@@ -21,10 +21,10 @@
 
 use core::{cmp, mem, ptr, str};
 
-use Error;
-use Hash as HashTrait;
-use HashEngine as EngineTrait;
-use util;
+use crate::Error;
+use crate::Hash as HashTrait;
+use crate::HashEngine as EngineTrait;
+use crate::util;
 
 macro_rules! compress {
     ($state:expr) => {{
@@ -210,9 +210,9 @@ serde_impl!(Hash, 8);
 borrow_slice_impl!(Hash);
 
 impl str::FromStr for Hash {
-    type Err = ::hex::Error;
+    type Err = crate::hex::Error;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        ::hex::FromHex::from_hex(s)
+        crate::hex::FromHex::from_hex(s)
     }
 }
 
@@ -326,7 +326,7 @@ unsafe fn u8to64_le(buf: &[u8], start: usize, len: usize) -> u64 {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use Hash as HashTrait;
+    use crate::Hash as HashTrait;
 
     #[test]
     fn test_siphash_2_4() {

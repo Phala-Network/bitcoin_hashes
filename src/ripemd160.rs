@@ -21,10 +21,10 @@
 
 use core::{cmp, str};
 
-use HashEngine as EngineTrait;
-use Hash as HashTrait;
-use Error;
-use util;
+use crate::HashEngine as EngineTrait;
+use crate::Hash as HashTrait;
+use crate::Error;
+use crate::util;
 
 const BLOCK_SIZE: usize = 64;
 
@@ -90,9 +90,9 @@ serde_impl!(Hash, 20);
 borrow_slice_impl!(Hash);
 
 impl str::FromStr for Hash {
-    type Err = ::hex::Error;
+    type Err = crate::hex::Error;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        ::hex::FromHex::from_hex(s)
+        crate::hex::FromHex::from_hex(s)
     }
 }
 
@@ -447,10 +447,10 @@ impl HashEngine {
 
 #[cfg(test)]
 mod tests {
-    use ripemd160;
-    use hex::{FromHex, ToHex};
-    use Hash;
-    use HashEngine;
+    use crate::ripemd160;
+    use crate::hex::{FromHex, ToHex};
+    use crate::Hash;
+    use crate::HashEngine;
 
     #[derive(Clone)]
     struct Test {

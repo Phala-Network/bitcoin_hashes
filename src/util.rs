@@ -234,8 +234,8 @@ pub mod json_hex_string {
 
 #[cfg(test)]
 mod test {
-    use Hash;
-    use sha256;
+    use crate::Hash;
+    use crate::sha256;
     use super::*;
 
     #[test]

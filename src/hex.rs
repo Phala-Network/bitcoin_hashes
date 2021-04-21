@@ -16,7 +16,7 @@
 //!
 
 use core::{fmt, str};
-use Hash;
+use crate::Hash;
 
 /// Hex decoding error
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]

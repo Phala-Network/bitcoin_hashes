@@ -17,10 +17,10 @@
 use core::{cmp, str};
 use core::marker::PhantomData;
 
-use sha256;
-use Hash as HashTrait;
+use crate::sha256;
+use crate::Hash as HashTrait;
 #[allow(unused)]
-use Error;
+use crate::Error;
 
 /// Trait representing a tag that can be used as a context for SHA256t hashes.
 pub trait Tag {
@@ -72,9 +72,9 @@ impl<T: Tag> ::core::hash::Hash for Hash<T> {
 }
 
 impl<T: Tag> str::FromStr for Hash<T> {
-    type Err = ::hex::Error;
+    type Err = crate::hex::Error;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        ::hex::FromHex::from_hex(s)
+        crate::hex::FromHex::from_hex(s)
     }
 }
 
@@ -234,8 +234,8 @@ impl<'de, T: Tag> ::serde::Deserialize<'de> for Hash<T> {
 
 #[cfg(test)]
 mod tests {
-    use ::{Hash, sha256, sha256t};
-    use ::hex::ToHex;
+    use crate::{Hash, sha256, sha256t};
+    use crate::hex::ToHex;
 
     const TEST_MIDSTATE: [u8; 32] = [
        156, 224, 228, 230, 124, 17, 108, 57, 56, 179, 202, 242, 195, 15, 80, 137, 211, 243,

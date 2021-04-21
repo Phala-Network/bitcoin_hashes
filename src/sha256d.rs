@@ -16,9 +16,9 @@
 
 use core::str;
 
-use sha256;
-use Hash as HashTrait;
-use Error;
+use crate::sha256;
+use crate::Hash as HashTrait;
+use crate::Error;
 
 /// Output of the SHA256d hash function
 #[derive(Copy, Clone, PartialEq, Eq, Default, PartialOrd, Ord, Hash)]
@@ -36,9 +36,9 @@ serde_impl!(Hash, 32);
 borrow_slice_impl!(Hash);
 
 impl str::FromStr for Hash {
-    type Err = ::hex::Error;
+    type Err = crate::hex::Error;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        ::hex::FromHex::from_hex(s)
+        crate::hex::FromHex::from_hex(s)
     }
 }
 
@@ -88,10 +88,10 @@ impl HashTrait for Hash {
 
 #[cfg(test)]
 mod tests {
-    use sha256d;
-    use hex::{FromHex, ToHex};
-    use Hash;
-    use HashEngine;
+    use crate::sha256d;
+    use crate::hex::{FromHex, ToHex};
+    use crate::Hash;
+    use crate::HashEngine;
 
 #[derive(Clone)]
     struct Test {

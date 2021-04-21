@@ -61,8 +61,8 @@ pub mod cmp;
 
 use core::{borrow, fmt, hash, ops};
 
-pub use hmac::{Hmac, HmacEngine};
-pub use error::Error;
+pub use crate::hmac::{Hmac, HmacEngine};
+pub use crate::error::Error;
 
 /// A hashing engine which bytes can be serialized into
 pub trait HashEngine: Clone + Default {
@@ -228,9 +228,9 @@ macro_rules! hash_newtype {
 
 #[cfg(test)]
 mod test {
-    use Hash;
-    hash_newtype!(TestNewtype, ::sha256d::Hash, 32, doc="A test newtype");
-    hash_newtype!(TestNewtype2, ::sha256d::Hash, 32, doc="A test newtype");
+    use crate::Hash;
+    hash_newtype!(TestNewtype, crate::sha256d::Hash, 32, doc="A test newtype");
+    hash_newtype!(TestNewtype2, crate::sha256d::Hash, 32, doc="A test newtype");
 
     #[test]
     fn convert_newtypes() {
@@ -238,7 +238,7 @@ mod test {
         let h2: TestNewtype2 = h1.as_hash().into();
         assert_eq!(&h1[..], &h2[..]);
 
-        let h = ::sha256d::Hash::hash(&[]);
+        let h = crate::sha256d::Hash::hash(&[]);
         let h2: TestNewtype = h.to_string().parse().unwrap();
         assert_eq!(h2.as_hash(), h);
     }
