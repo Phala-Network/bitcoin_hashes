@@ -148,7 +148,7 @@ macro_rules! sha256t_hash_newtype {
 #[cfg(feature="serde")]
 impl<T: Tag> ::serde::Serialize for Hash<T> {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        use ::hex::ToHex;
+        use crate::hex::ToHex;
         if s.is_human_readable() {
             s.serialize_str(&self.to_hex())
         } else {
@@ -177,7 +177,7 @@ impl<'de, T: Tag> ::serde::de::Visitor<'de> for HexVisitor<T> {
         where
             E: ::serde::de::Error,
     {
-        use ::hex::FromHex;
+        use crate::hex::FromHex;
         if let Ok(hex) = ::std::str::from_utf8(v) {
             Hash::<T>::from_hex(hex).map_err(E::custom)
         } else {
@@ -189,7 +189,7 @@ impl<'de, T: Tag> ::serde::de::Visitor<'de> for HexVisitor<T> {
         where
             E: ::serde::de::Error,
     {
-        use ::hex::FromHex;
+        use crate::hex::FromHex;
         Hash::<T>::from_hex(v).map_err(E::custom)
     }
 }

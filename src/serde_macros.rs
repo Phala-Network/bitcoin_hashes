@@ -1,11 +1,11 @@
 #[cfg(feature = "serde")]
 pub mod serde_details {
-    use Error;
+    use crate::Error;
 
     use std::marker::PhantomData;
     struct HexVisitor<ValueT>(PhantomData<ValueT>);
     use serde::{de, Serializer, Deserializer};
-    use hex;
+    use crate::hex;
 
     impl<'de, ValueT> de::Visitor<'de> for HexVisitor<ValueT>
     where

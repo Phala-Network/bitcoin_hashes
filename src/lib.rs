@@ -43,16 +43,20 @@
 #[macro_use]
 extern crate sgx_tstd as std;
 
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+#[macro_use]
+pub extern crate sgx_tstd as core;
+
 #[cfg(all(test, feature = "unstable"))] extern crate test;
 
-#[cfg(any(test, feature="std"))] pub extern crate core;
+// #[cfg(any(test, feature="std"))] pub extern crate core;
 #[cfg(feature="serde")] pub extern crate serde;
-#[cfg(all(test,feature="serde"))] extern crate serde_test;
+// #[cfg(all(test,feature="serde"))] extern crate serde_test;
 
 #[cfg(feature = "schemars")] extern crate schemars;
 
 #[macro_use] mod util;
-#[macro_use] mod serde_macros;
+#[macro_use] pub mod serde_macros;
 #[cfg(any(test, feature = "std"))] mod std_impls;
 pub mod error;
 pub mod hex;
